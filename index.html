@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>残業代計算ツール 2026年最新版｜時間外・深夜・固定残業・未払い対応</title>
+<meta name="description" content="残業代を無料で簡単計算。時間外労働・深夜残業・固定残業代チェック・未払い残業代の累計試算まで対応。2026年最新の割増賃金率（月60時間超は1.5倍）に完全対応。">
+<meta name="keywords" content="残業代計算,時間外手当,深夜残業,固定残業代,未払い残業代,割増賃金">
+<meta property="og:title" content="残業代計算ツール｜無料・即計算">
+<meta property="og:description" content="時間外・深夜・固定残業・未払い残業代を一括計算。スマホ対応。">
+<meta property="og:type" content="website">
+
+<!-- Google AdSense: 審査通過後に下記を有効化 -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg-secondary: #f7f7f5;
+    --bg-tertiary: #f0efeb;
+    --text-primary: #1a1a18;
+    --text-secondary: #6b6a65;
+    --text-tertiary: #9e9d98;
+    --border: rgba(0,0,0,0.12);
+    --border-strong: rgba(0,0,0,0.22);
+    --accent: #1a5fd6;
+    --accent-bg: #eef3fc;
+    --accent-text: #1448a8;
+    --warn-bg: #fff8e8;
+    --warn-border: #f0c84a;
+    --warn-text: #7a5b00;
+    --success-bg: #eafaf0;
+    --success-text: #1a6b3c;
+    --danger-bg: #fff0f0;
+    --danger-text: #b82c2c;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0 0 0.5px rgba(0,0,0,0.06);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1c1a;
+      --bg-secondary: #242422;
+      --bg-tertiary: #2c2c29;
+      --text-primary: #e8e7e1;
+      --text-secondary: #9e9d96;
+      --text-tertiary: #6b6a63;
+      --border: rgba(255,255,255,0.1);
+      --border-strong: rgba(255,255,255,0.18);
+      --accent: #4a8aee;
+      --accent-bg: #1a2a45;
+      --accent-text: #7ab0f5;
+      --warn-bg: #2a2210;
+      --warn-border: #7a5b00;
+      --warn-text: #f0c84a;
+      --success-bg: #0f2a1a;
+      --success-text: #4caf7d;
+      --danger-bg: #2a0f0f;
+      --danger-text: #f07070;
+      --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 0.5px rgba(255,255,255,0.06);
+    }
+  }
+
+  html { font-size: 16px; }
+  body {
+    font-family: -apple-system, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--bg);
+    border-bottom: 0.5px solid var(--border);
+    padding: 1.25rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  header h1 {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  header p {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    margin-top: 2px;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  /* Ad slots */
+  .ad-slot {
+    background: var(--bg-secondary);
+    border: 0.5px dashed var(--border-strong);
+    border-radius: var(--radius-md);
+    text-align: center;
+    color: var(--text-tertiary);
+    font-size: 12px;
+    padding: 1.5rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .ad-slot ins { display: block; }
+
+  /* Tabs */
+  .tab-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .tab {
+    padding: 7px 18px;
+    border-radius: var(--radius-sm);
+    border: 0.5px solid var(--border-strong);
+    font-size: 13px;
+    cursor: pointer;
+    background: var(--bg);
+    color: var(--text-secondary);
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+  .tab:hover { background: var(--bg-secondary); }
+  .tab.active {
+    background: var(--accent-bg);
+    color: var(--accent-text);
+    border-color: transparent;
+    font-weight: 500;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 14px;
+  }
+
+  /* Form */
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 480px) { .field-grid { grid-template-columns: 1fr; } }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .field input {
+    width: 100%;
+    padding: 9px 12px;
+    border: 0.5px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .field input:focus { border-color: var(--accent); }
+
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 99px;
+    background: var(--accent-bg);
+    color: var(--accent-text);
+    font-weight: 500;
+  }
+
+  /* Result metrics */
+  .result-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 480px) { .result-grid { grid-template-columns: 1fr 1fr; } }
+  .metric {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+  }
+  .metric .mlabel {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    margin-bottom: 6px;
+  }
+  .metric .mvalue {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-primary);
+    word-break: break-all;
+  }
+  .metric .msub {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    margin-top: 3px;
+  }
+  .metric.highlight .mvalue { color: var(--accent); }
+
+  /* Breakdown */
+  .breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 0;
+    border-bottom: 0.5px solid var(--border);
+    font-size: 14px;
+  }
+  .breakdown-row:last-child { border-bottom: none; font-weight: 500; }
+  .breakdown-row .bcat { color: var(--text-secondary); }
+  .breakdown-row .bhours { font-size: 12px; color: var(--text-tertiary); margin-left: 6px; }
+  .breakdown-row .bamt { font-weight: 500; }
+
+  /* Alerts */
+  .alert {
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .alert-warn {
+    background: var(--warn-bg);
+    color: var(--warn-text);
+    border: 0.5px solid var(--warn-border);
+  }
+  .alert-danger {
+    background: var(--danger-bg);
+    color: var(--danger-text);
+    border: 0.5px solid var(--danger-text);
+  }
+  .alert-success {
+    background: var(--success-bg);
+    color: var(--success-text);
+    border: 0.5px solid var(--success-text);
+  }
+
+  .disclaimer {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    line-height: 1.7;
+    margin-top: 8px;
+  }
+
+  /* Info section */
+  .info-section {
+    margin-top: 2rem;
+  }
+  .info-section h2 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .info-section h3 {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 1rem 0 6px;
+    color: var(--text-secondary);
+  }
+  .info-section p, .info-section li {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+  .info-section ul { padding-left: 1.25rem; }
+  .info-section li { margin-bottom: 4px; }
+
+  .rate-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 12px 0;
+  }
+  .rate-table th {
+    background: var(--bg-secondary);
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+  .rate-table td {
+    padding: 8px 12px;
+    border-top: 0.5px solid var(--border);
+    color: var(--text-primary);
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 12px;
+    color: var(--text-tertiary);
+    border-top: 0.5px solid var(--border);
+    margin-top: 2rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>残業代計算ツール</h1>
+  <p>時間外・深夜・固定残業・未払い対応｜2026年最新版</p>
+</header>
+
+<div class="container">
+
+  <!-- 上部広告スロット -->
+  <div class="ad-slot" id="ad-top">
+    <!-- AdSense審査通過後に下記を有効化し、このコメントを削除 -->
+    <!--
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    -->
+    広告スペース（728×90）
+  </div>
+
+  <div class="tab-row">
+    <button class="tab active" onclick="setMode('normal')">通常残業</button>
+    <button class="tab" onclick="setMode('fixed')">固定残業代チェック</button>
+    <button class="tab" onclick="setMode('unpaid')">未払い残業代</button>
+  </div>
+
+  <!-- ===== 通常残業 ===== -->
+  <div id="mode-normal">
+    <div class="card">
+      <div class="section-label">給与情報</div>
+      <div class="field-grid">
+        <div class="field">
+          <label>月給（円）</label>
+          <input type="number" id="salary" value="300000" min="0" oninput="calc()">
+        </div>
+        <div class="field">
+          <label>月間所定労働時間（時間）</label>
+          <input type="number" id="work-hours" value="160" min="1" oninput="calc()">
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="section-label">残業時間</div>
+      <div class="field-grid">
+        <div class="field">
+          <label>時間外労働 <span class="badge">×1.25</span></label>
+          <input type="number" id="ot" value="20" min="0" oninput="calc()">
+        </div>
+        <div class="field">
+          <label>月60時間超の時間外 <span class="badge">×1.5</span></label>
+          <input type="number" id="ot60" value="0" min="0" oninput="calc()">
+        </div>
+        <div class="field">
+          <label>深夜残業（22時〜5時）<span class="badge">×1.5</span></label>
+          <input type="number" id="night" value="0" min="0" oninput="calc()">
+        </div>
+        <div class="field">
+          <label>法定休日出勤 <span class="badge">×1.35</span></label>
+          <input type="number" id="holiday" value="0" min="0" oninput="calc()">
+        </div>
+      </div>
+    </div>
+
+    <div class="result-grid">
+      <div class="metric">
+        <div class="mlabel">時給換算</div>
+        <div class="mvalue" id="r-hourly">—</div>
+        <div class="msub">円 / 時間</div>
+      </div>
+      <div class="metric highlight">
+        <div class="mlabel">今月の残業代</div>
+        <div class="mvalue" id="r-total">—</div>
+        <div class="msub">円</div>
+      </div>
+      <div class="metric">
+        <div class="mlabel">年間換算（×12）</div>
+        <div class="mvalue" id="r-annual">—</div>
+        <div class="msub">円</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">内訳</div>
+      <div id="breakdown"></div>
+    </div>
+
+    <p class="disclaimer">※本ツールはあくまで目安です。実際の残業代は就業規則・給与体系により異なる場合があります。</p>
+  </div>
+
+  <!-- ===== 固定残業代チェック ===== -->
+  <div id="mode-fixed" style="display:none">
+    <div class="card">
+      <div class="section-label">固定残業代の情報</div>
+      <div class="field-grid">
+        <div class="field">
+          <label>月給総額（固定残業代含む）（円）</label>
+          <input type="number" id="f-salary" value="300000" min="0" oninput="calcFixed()">
+        </div>
+        <div class="field">
+          <label>月間所定労働時間（時間）</label>
+          <input type="number" id="f-workhours" value="160" min="1" oninput="calcFixed()">
+        </div>
+        <div class="field">
+          <label>固定残業の対象時間数（時間）</label>
+          <input type="number" id="f-fixed-hours" value="30" min="0" oninput="calcFixed()">
+        </div>
+        <div class="field">
+          <label>実際の月間残業時間（時間）</label>
+          <input type="number" id="f-actual" value="35" min="0" oninput="calcFixed()">
+        </div>
+      </div>
+    </div>
+
+    <div class="result-grid" style="grid-template-columns: repeat(2, minmax(0,1fr));">
+      <div class="metric highlight">
+        <div class="mlabel">法令上の固定残業代</div>
+        <div class="mvalue" id="f-should">—</div>
+        <div class="msub">円（本来の適正額）</div>
+      </div>
+      <div class="metric">
+        <div class="mlabel">超過分の追加残業代</div>
+        <div class="mvalue" id="f-extra">—</div>
+        <div class="msub">円（追加請求可能）</div>
+      </div>
+    </div>
+
+    <div id="f-alert"></div>
+
+    <div class="card">
+      <div class="section-label">固定残業代制度とは</div>
+      <p style="font-size:14px; color:var(--text-secondary); line-height:1.75;">固定残業代（みなし残業代）は、一定時間分の残業代をあらかじめ給与に含めて支払う制度です。しかし、実際の残業時間が固定残業時間を超えた場合は、超過分を追加で支払う義務があります。また、固定残業代の金額が法令の計算式を下回る場合は差額の請求が可能です。</p>
+    </div>
+
+    <p class="disclaimer">※本ツールはあくまで参考値です。正確な判断は弁護士・社労士にご相談ください。</p>
+  </div>
+
+  <!-- ===== 未払い残業代 ===== -->
+  <div id="mode-unpaid" style="display:none">
+    <div class="alert alert-warn">
+      未払い残業代の時効は<strong>3年</strong>（2020年4月改正）。在職中は年6%、退職後は年14.6%の遅延損害金が加算される場合があります。
+    </div>
+
+    <div class="card">
+      <div class="section-label">未払い残業代の試算</div>
+      <div class="field-grid">
+        <div class="field">
+          <label>月給（円）</label>
+          <input type="number" id="u-salary" value="300000" min="0" oninput="calcUnpaid()">
+        </div>
+        <div class="field">
+          <label>月間所定労働時間（時間）</label>
+          <input type="number" id="u-workhours" value="160" min="1" oninput="calcUnpaid()">
+        </div>
+        <div class="field">
+          <label>月間未払い残業時間（時間）</label>
+          <input type="number" id="u-ot" value="20" min="0" oninput="calcUnpaid()">
+        </div>
+        <div class="field">
+          <label>未払い期間 <span class="badge">最大36ヶ月</span></label>
+          <input type="number" id="u-months" value="12" min="1" max="36" oninput="calcUnpaid()">
+        </div>
+      </div>
+    </div>
+
+    <div class="result-grid" style="grid-template-columns: repeat(2, minmax(0,1fr));">
+      <div class="metric">
+        <div class="mlabel">月間未払い額</div>
+        <div class="mvalue" id="u-monthly">—</div>
+        <div class="msub">円 / 月</div>
+      </div>
+      <div class="metric highlight">
+        <div class="mlabel">累計請求可能額</div>
+        <div class="mvalue" id="u-total">—</div>
+        <div class="msub">円（遅延損害金別）</div>
+      </div>
+    </div>
+
+    <p class="disclaimer">※本ツールはあくまで参考値です。正確な請求額は弁護士・社労士にご相談ください。未払い残業代は労働基準監督署への相談も可能です。</p>
+  </div>
+
+  <!-- 中間広告スロット -->
+  <div class="ad-slot" style="margin-top: 1.5rem;">
+    <!--
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    -->
+    広告スペース（レスポンシブ）
+  </div>
+
+  <!-- SEO用コンテンツ -->
+  <div class="info-section">
+    <div class="card">
+      <h2>割増賃金率の早見表（2026年版）</h2>
+      <table class="rate-table">
+        <thead>
+          <tr>
+            <th>残業の種類</th>
+            <th>割増率</th>
+            <th>条件</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>時間外労働（法定外残業）</td><td><strong>×1.25</strong></td><td>1日8時間・週40時間超</td></tr>
+          <tr><td>時間外労働（月60時間超）</td><td><strong>×1.50</strong></td><td>2023年4月〜全企業対象</td></tr>
+          <tr><td>深夜労働（22時〜5時）</td><td><strong>×1.25</strong></td><td>時間外と重複する場合は×1.50</td></tr>
+          <tr><td>法定休日出勤</td><td><strong>×1.35</strong></td><td>法定休日（週1日）</td></tr>
+          <tr><td>法定外休日出勤</td><td><strong>×1.00〜</strong></td><td>所定休日（法定外）は割増なしも可</td></tr>
+        </tbody>
+      </table>
+
+      <h3>残業代の計算式</h3>
+      <p>残業代 ＝ 時給換算 × 残業時間 × 割増率</p>
+      <p style="margin-top:6px;">時給換算 ＝ 月給 ÷ 月間所定労働時間</p>
+
+      <h3>月60時間超の割増率について</h3>
+      <p>2023年4月1日より、中小企業も含むすべての企業で、月60時間を超える時間外労働の割増賃金率が1.5倍に引き上げられました。60時間以内は従来通り1.25倍です。</p>
+
+      <h3>固定残業代（みなし残業）の注意点</h3>
+      <ul>
+        <li>固定残業時間を超えて働いた分は、追加で残業代の支払いが必要</li>
+        <li>固定残業代の金額が法令計算を下回る場合は差額請求できる可能性あり</li>
+        <li>求人票には固定残業時間・金額・超過分の追加支払い方針の明記が義務</li>
+      </ul>
+
+      <h3>未払い残業代の時効</h3>
+      <p>2020年4月の改正労働基準法施行後に発生した残業代の時効は3年です。退職後でも請求できます。まずは労働基準監督署または弁護士・社労士に相談することをおすすめします。</p>
+    </div>
+  </div>
+
+  <!-- 下部広告スロット -->
+  <div class="ad-slot">
+    <!--
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    -->
+    広告スペース（フッター上）
+  </div>
+
+</div>
+
+<footer>
+  <p>本ツールの計算結果は目安であり、法的助言ではありません。正確な情報は専門家（弁護士・社労士）にご相談ください。</p>
+  <p style="margin-top:6px;">参考：<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/roudoujikan/index.html" target="_blank" rel="noopener">厚生労働省 労働時間・残業代について</a></p>
+  <p style="margin-top:12px;">&copy; 2026 残業代計算ツール</p>
+</footer>
+
+<script>
+function fmt(n) {
+  if (!isFinite(n) || n === 0) return '0';
+  return Math.round(n).toLocaleString('ja-JP');
+}
+
+function setMode(mode) {
+  ['normal', 'fixed', 'unpaid'].forEach(m => {
+    document.getElementById('mode-' + m).style.display = m === mode ? '' : 'none';
+  });
+  document.querySelectorAll('.tab').forEach((t, i) => {
+    t.classList.toggle('active', ['normal', 'fixed', 'unpaid'][i] === mode);
+  });
+  if (mode === 'normal') calc();
+  if (mode === 'fixed') calcFixed();
+  if (mode === 'unpaid') calcUnpaid();
+}
+
+function calc() {
+  const salary = parseFloat(document.getElementById('salary').value) || 0;
+  const wh = parseFloat(document.getElementById('work-hours').value) || 160;
+  const ot = parseFloat(document.getElementById('ot').value) || 0;
+  const ot60 = parseFloat(document.getElementById('ot60').value) || 0;
+  const night = parseFloat(document.getElementById('night').value) || 0;
+  const holiday = parseFloat(document.getElementById('holiday').value) || 0;
+
+  const hourly = wh > 0 ? salary / wh : 0;
+  const otPay = hourly * 1.25 * ot;
+  const ot60Pay = hourly * 1.50 * ot60;
+  const nightPay = hourly * 1.50 * night;
+  const holidayPay = hourly * 1.35 * holiday;
+  const total = otPay + ot60Pay + nightPay + holidayPay;
+
+  document.getElementById('r-hourly').textContent = fmt(hourly);
+  document.getElementById('r-total').textContent = fmt(total);
+  document.getElementById('r-annual').textContent = fmt(total * 12);
+
+  const rows = [
+    { label: '時間外労働（×1.25）', hours: ot, amt: otPay },
+    { label: '月60時間超の時間外（×1.50）', hours: ot60, amt: ot60Pay },
+    { label: '深夜残業（×1.50）', hours: night, amt: nightPay },
+    { label: '法定休日出勤（×1.35）', hours: holiday, amt: holidayPay },
+  ].filter(r => r.amt > 0);
+
+  rows.push({ label: '合計', hours: null, amt: total });
+
+  document.getElementById('breakdown').innerHTML = rows.map(r =>
+    `<div class="breakdown-row">
+      <span class="bcat">${r.label}${r.hours !== null ? `<span class="bhours">${r.hours}時間</span>` : ''}</span>
+      <span class="bamt">${fmt(r.amt)} 円</span>
+    </div>`
+  ).join('');
+}
+
+function calcFixed() {
+  const salary = parseFloat(document.getElementById('f-salary').value) || 0;
+  const wh = parseFloat(document.getElementById('f-workhours').value) || 160;
+  const fixedHours = parseFloat(document.getElementById('f-fixed-hours').value) || 0;
+  const actual = parseFloat(document.getElementById('f-actual').value) || 0;
+
+  const totalHours = wh + fixedHours;
+  const hourly = totalHours > 0 ? salary / totalHours : 0;
+  const legalFixed = hourly * 1.25 * fixedHours;
+  const extraHours = Math.max(0, actual - fixedHours);
+  const extra = hourly * 1.25 * extraHours;
+
+  document.getElementById('f-should').textContent = fmt(legalFixed);
+  document.getElementById('f-extra').textContent = fmt(extra);
+
+  const alertEl = document.getElementById('f-alert');
+  const baseSalary = salary - legalFixed;
+  if (baseSalary < 0) {
+    alertEl.innerHTML = `<div class="alert alert-danger">固定残業代が月給を上回っています。給与設定を見直してください。</div>`;
+  } else if (extra > 0) {
+    alertEl.innerHTML = `<div class="alert alert-warn">実際の残業時間が固定残業時間を超えています。超過分（${fmt(extra)}円）の追加支払いが必要です。</div>`;
+  } else {
+    alertEl.innerHTML = `<div class="alert alert-success">固定残業時間の範囲内で収まっています。</div>`;
+  }
+}
+
+function calcUnpaid() {
+  const salary = parseFloat(document.getElementById('u-salary').value) || 0;
+  const wh = parseFloat(document.getElementById('u-workhours').value) || 160;
+  const ot = parseFloat(document.getElementById('u-ot').value) || 0;
+  const months = Math.min(36, parseFloat(document.getElementById('u-months').value) || 1);
+
+  const hourly = wh > 0 ? salary / wh : 0;
+  const monthly = hourly * 1.25 * ot;
+  const total = monthly * months;
+
+  document.getElementById('u-monthly').textContent = fmt(monthly);
+  document.getElementById('u-total').textContent = fmt(total);
+}
+
+calc();
+</script>
+
+</body>
+</html>
